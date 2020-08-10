@@ -14,7 +14,6 @@ const pizza = (props) => {
     .reduce((acc, el) => {
       return acc.concat(el);
     }, []);
-  console.log(transformedIngredients);
   if (transformedIngredients.length === 0) {
     transformedIngredients = <p> Please add ingredients! </p>;
   }

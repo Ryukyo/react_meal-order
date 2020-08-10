@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: "Open Sans", sans-serif;
 }
+
+p {
+  font-weight: bold;
+  /* align-content: flex-end; */
+  align-content: right;
+  font-size: large;
+  margin: 0 0;
+  background-color: yellow;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  width: auto;
+  padding: 7px;
+}
