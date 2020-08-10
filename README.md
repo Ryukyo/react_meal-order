@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaKh6HIMYJzi_P4DpqhwfhSHHX0mRCSW78mA&usqp=CAU" width="600" height="400"/>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaKh6HIMYJzi_P4DpqhwfhSHHX0mRCSW78mA&usqp=CAU" width="450" height="300"/>
 </div>
 
 # Individual Meal Order
