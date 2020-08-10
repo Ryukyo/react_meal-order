@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Aux from "../../utils/helper";
 import Pizza from "../../components/Pizza/Pizza";
 import BuildControls from "../../components/Pizza/BuildControls";
+import Modal from "../../components/Layout/Modal";
+import OrderSummary from "../../components/Pizza/OrderSummary";
 
 const INGREDIENT_PRICES = {
   olive: 0.2,
@@ -20,6 +22,7 @@ class PizzaBuilder extends Component {
     },
     total: 5,
     purchaseable: false,
+    ordering: false,
   };
 
   updatePurchaseState = (ingredients) => {
@@ -70,6 +73,10 @@ class PizzaBuilder extends Component {
     this.updatePurchaseState(updatedIngredients);
   };
 
+  purchaseHandler = () => {
+    this.setState({ ordering: true });
+  };
+
   render() {
     // assign true or false to ingredient if amount <= 0
     const disabledNotification = {
@@ -80,6 +87,9 @@ class PizzaBuilder extends Component {
     }
     return (
       <Aux>
+        <Modal display={this.state.ordering}>
+          <OrderSummary ingredients={this.state.ingredients} />
+        </Modal>
         <Pizza ingredients={this.state.ingredients}></Pizza>
         <BuildControls
           ingredientAdder={this.addIngredientHandler}
@@ -87,6 +97,7 @@ class PizzaBuilder extends Component {
           disabled={disabledNotification}
           price={this.state.total}
           purchaseable={this.state.purchaseable}
+          ordered={this.purchaseHandler}
         ></BuildControls>
       </Aux>
     );
