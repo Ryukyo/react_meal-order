@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Aux from "../../utils/Aux";
+import Aux from "../../utils/helper";
 
 class PizzaBuilder extends Component {
   render() {
