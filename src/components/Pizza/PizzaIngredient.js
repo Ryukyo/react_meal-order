@@ -25,7 +25,7 @@ class PizzaIngredient extends Component {
         ingredient = <div className={classes.Cheese}></div>;
         break;
       case "olive":
-        ingredient = <div className={classes.Olives}></div>;
+        ingredient = <div className={classes.Olive}></div>;
         break;
       case "bacon":
         ingredient = <div className={classes.Bacon}></div>;
