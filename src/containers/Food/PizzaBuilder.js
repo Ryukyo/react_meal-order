@@ -19,21 +19,35 @@ class PizzaBuilder extends Component {
       meat: 1,
     },
     total: 5,
+    purchaseable: false,
+  };
+
+  updatePurchaseState = (ingredients) => {
+    // Array of strings -> array numbers -> sum
+    const sum = Object.keys(ingredients)
+      .map((ingrKey) => {
+        return ingredients[ingrKey];
+      })
+      .reduce((acc, el) => {
+        return acc + el;
+      }, 0);
+    this.setState({ purchaseable: sum > 0 });
   };
 
   addIngredientHandler = (type) => {
     let oldAmount = this.state.ingredients[type];
     let incrAmount = oldAmount + 1;
-    const updatedIngredients = {
+    let updatedIngredients = {
       ...this.state.ingredients,
     };
     updatedIngredients[type] = incrAmount;
 
-    const costAdd = INGREDIENT_PRICES[type];
-    const oldPrice = this.state.total;
-    const newPrice = oldPrice + costAdd;
+    let costAdd = INGREDIENT_PRICES[type];
+    let oldPrice = this.state.total;
+    let newPrice = oldPrice + costAdd;
 
     this.setState({ total: newPrice, ingredients: updatedIngredients });
+    this.updatePurchaseState(updatedIngredients);
   };
 
   removeIngredientHandler = (type) => {
@@ -53,6 +67,7 @@ class PizzaBuilder extends Component {
     const newPrice = oldPrice - costDec;
 
     this.setState({ total: newPrice, ingredients: updatedIngredients });
+    this.updatePurchaseState(updatedIngredients);
   };
 
   render() {
@@ -71,6 +86,7 @@ class PizzaBuilder extends Component {
           ingredientRemover={this.removeIngredientHandler}
           disabled={disabledNotification}
           price={this.state.total}
+          purchaseable={this.state.purchaseable}
         ></BuildControls>
       </Aux>
     );
