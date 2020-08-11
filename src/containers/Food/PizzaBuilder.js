@@ -94,7 +94,7 @@ class PizzaBuilder extends Component {
 
   purchaseCheckoutHandler = () => {
     //final product would calculate the total price on server side
-    this.setState({ loading: true });
+    /* this.setState({ loading: true });
     const order = {
       ingredients: this.state.ingredients,
       price: this.state.total,
@@ -117,7 +117,22 @@ class PizzaBuilder extends Component {
       })
       .catch((error) => {
         this.setState({ loading: false, ordering: false });
-      });
+      }); */
+    const queryParams = [];
+    for (let i in this.state.ingredients) {
+      queryParams.push(
+        encodeURIComponent(i) +
+          "=" +
+          encodeURIComponent(this.state.ingredients[i])
+      );
+    }
+
+    const queryString = queryParams.join("&");
+
+    this.props.history.push({
+      pathname: "/checkout",
+      search: "?" + queryString,
+    });
   };
 
   render() {
