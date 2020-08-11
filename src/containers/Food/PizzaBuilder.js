@@ -17,17 +17,24 @@ const INGREDIENT_PRICES = {
 };
 class PizzaBuilder extends Component {
   state = {
-    ingredients: {
-      olive: 0,
-      bacon: 0,
-      cheese: 0,
-      meat: 0,
-    },
+    ingredients: null,
     total: 3,
     purchaseable: false,
     ordering: false,
     loading: false,
+    error: false,
   };
+
+  componentDidMount() {
+    axios
+      .get("https://food-order-mvp.firebaseio.com/ingredients.json")
+      .then((res) => {
+        this.setState({ ingredients: res.data });
+      })
+      .catch((error) => {
+        this.setState({ error: true });
+      });
+  }
 
   updatePurchaseState = (ingredients) => {
     // Array of strings -> array numbers -> sum
@@ -123,14 +130,36 @@ class PizzaBuilder extends Component {
       disabledNotification[key] = disabledNotification[key] <= 0;
     }
 
-    let orderSummary = (
-      <OrderSummary
-        ingredients={this.state.ingredients}
-        purchaseContinued={this.purchaseCheckoutHandler}
-        purchaseCancelled={this.purchaseCancelHandler}
-        totalPrice={this.state.total}
-      />
+    let orderSummary = null;
+    let pizza = this.state.error ? (
+      <p>Failed to load ingredients</p>
+    ) : (
+      <Spinner />
     );
+
+    if (this.state.ingredients) {
+      pizza = (
+        <Aux>
+          <Pizza ingredients={this.state.ingredients}></Pizza>
+          <BuildControls
+            ingredientAdder={this.addIngredientHandler}
+            ingredientRemover={this.removeIngredientHandler}
+            disabled={disabledNotification}
+            price={this.state.total}
+            purchaseable={this.state.purchaseable}
+            ordered={this.purchaseHandler}
+          ></BuildControls>
+        </Aux>
+      );
+      orderSummary = (
+        <OrderSummary
+          ingredients={this.state.ingredients}
+          purchaseContinued={this.purchaseCheckoutHandler}
+          purchaseCancelled={this.purchaseCancelHandler}
+          totalPrice={this.state.total}
+        />
+      );
+    }
 
     if (this.state.loading) {
       orderSummary = <Spinner />;
@@ -144,15 +173,7 @@ class PizzaBuilder extends Component {
         >
           {orderSummary}
         </Modal>
-        <Pizza ingredients={this.state.ingredients}></Pizza>
-        <BuildControls
-          ingredientAdder={this.addIngredientHandler}
-          ingredientRemover={this.removeIngredientHandler}
-          disabled={disabledNotification}
-          price={this.state.total}
-          purchaseable={this.state.purchaseable}
-          ordered={this.purchaseHandler}
-        ></BuildControls>
+        {pizza}
       </Aux>
     );
   }
