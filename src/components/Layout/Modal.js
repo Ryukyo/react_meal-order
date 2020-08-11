@@ -6,7 +6,10 @@ import Backdrop from "./Backdrop";
 class Modal extends Component {
   // prevent rendering of modal when other props than display have changed
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.display !== this.props.display;
+    return (
+      nextProps.display !== this.props.display ||
+      nextProps.children !== this.props.children
+    );
   }
 
   render() {
