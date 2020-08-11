@@ -51,3 +51,16 @@
     transform: scale(1);
   }
 }
+
+.Price {
+  font-weight: bold;
+  align-content: right;
+  font-size: large;
+  margin: 0 0;
+  background-color: yellow;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  width: auto;
+  padding: 7px;
+}

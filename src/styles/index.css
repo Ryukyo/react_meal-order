@@ -4,9 +4,8 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-p {
+/* p {
   font-weight: bold;
-  /* align-content: flex-end; */
   align-content: right;
   font-size: large;
   margin: 0 0;
@@ -17,3 +16,4 @@ p {
   width: auto;
   padding: 7px;
 }
+ */

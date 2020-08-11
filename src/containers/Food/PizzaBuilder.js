@@ -78,8 +78,11 @@ class PizzaBuilder extends Component {
   };
 
   purchaseCancelHandler = () => {
-    console.log("backdrop was clicked");
     this.setState({ ordering: false });
+  };
+
+  purchaseCheckoutHandler = () => {
+    console.log("Proceeding to checkout");
   };
 
   render() {
@@ -96,7 +99,12 @@ class PizzaBuilder extends Component {
           display={this.state.ordering}
           modalClosed={this.purchaseCancelHandler}
         >
-          <OrderSummary ingredients={this.state.ingredients} />
+          <OrderSummary
+            ingredients={this.state.ingredients}
+            purchaseContinued={this.purchaseCheckoutHandler}
+            purchaseCancelled={this.purchaseCancelHandler}
+            totalPrice={this.state.total}
+          />
         </Modal>
         <Pizza ingredients={this.state.ingredients}></Pizza>
         <BuildControls
