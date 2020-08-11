@@ -15,12 +15,12 @@ const INGREDIENT_PRICES = {
 class PizzaBuilder extends Component {
   state = {
     ingredients: {
-      olive: 1,
-      bacon: 1,
-      cheese: 1,
-      meat: 1,
+      olive: 0,
+      bacon: 0,
+      cheese: 0,
+      meat: 0,
     },
-    total: 5,
+    total: 3,
     purchaseable: false,
     ordering: false,
   };
@@ -77,6 +77,11 @@ class PizzaBuilder extends Component {
     this.setState({ ordering: true });
   };
 
+  purchaseCancelHandler = () => {
+    console.log("backdrop was clicked");
+    this.setState({ ordering: false });
+  };
+
   render() {
     // assign true or false to ingredient if amount <= 0
     const disabledNotification = {
@@ -87,7 +92,10 @@ class PizzaBuilder extends Component {
     }
     return (
       <Aux>
-        <Modal display={this.state.ordering}>
+        <Modal
+          display={this.state.ordering}
+          modalClosed={this.purchaseCancelHandler}
+        >
           <OrderSummary ingredients={this.state.ingredients} />
         </Modal>
         <Pizza ingredients={this.state.ingredients}></Pizza>
