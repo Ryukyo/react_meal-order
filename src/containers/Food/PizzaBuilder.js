@@ -5,8 +5,9 @@ import Pizza from "../../components/Pizza/Pizza";
 import BuildControls from "../../components/Pizza/BuildControls";
 import Modal from "../../components/Layout/Modal";
 import OrderSummary from "../../components/Pizza/OrderSummary";
-import axios from "../../axios-orders";
 import Spinner from "../../components/Layout/Spinner";
+import errorHandler from "../../utils/errorHandler";
+import axios from "../../axios-orders";
 
 const INGREDIENT_PRICES = {
   olive: 0.2,
@@ -157,4 +158,4 @@ class PizzaBuilder extends Component {
   }
 }
 
-export default PizzaBuilder;
+export default errorHandler(PizzaBuilder, axios);
