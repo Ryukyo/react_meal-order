@@ -94,31 +94,8 @@ class PizzaBuilder extends Component {
 
   purchaseCheckoutHandler = () => {
     //final product would calculate the total price on server side
-    /* this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.total,
-      customer: {
-        name: "Test",
-        address: {
-          street: "Ludwidgstrasse",
-          zip: "12345",
-          country: "Germany",
-        },
-        email: "test@test.de",
-      },
-      deliveryMethod: "express",
-    };
-
-    axios
-      .post("/orders.json", order)
-      .then((res) => {
-        this.setState({ loading: false, ordering: false });
-      })
-      .catch((error) => {
-        this.setState({ loading: false, ordering: false });
-      }); */
     const queryParams = [];
+
     for (let i in this.state.ingredients) {
       queryParams.push(
         encodeURIComponent(i) +
@@ -126,6 +103,7 @@ class PizzaBuilder extends Component {
           encodeURIComponent(this.state.ingredients[i])
       );
     }
+    queryParams.push("price=" + this.state.total);
 
     const queryString = queryParams.join("&");
 
