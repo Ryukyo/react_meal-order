@@ -3,7 +3,10 @@ import foodLogo from "../../assets/imgs/food_logo.png";
 import classes from "../../styles/Logo.css";
 
 const logo = (props) => (
-  <div className={classes.Logo}>
+  <div
+    className={classes.Logo}
+    style={{ height: props.height, marginBottom: props.marginBot }}
+  >
     <img src={foodLogo} alt="company-logo" />
   </div>
 );
