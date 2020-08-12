@@ -101,10 +101,11 @@
 }
 
 .Olive {
-  width: 65%;
-  height: 4%;
-  margin: 2% auto;
-  background: linear-gradient(#228c1d, #91ce50);
+  background-image: url(./../assets/imgs/oliven-removebg.png);
+  width: 60%;
+  height: 11%;
+  margin: 1% auto;
+  /* background: linear-gradient(#228c1d, #91ce50); */
   border-radius: 20px;
 }
 
