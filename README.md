@@ -1,53 +1,48 @@
-<div align="center">
+<!-- <div align="center">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSaKh6HIMYJzi_P4DpqhwfhSHHX0mRCSW78mA&usqp=CAU" width="450" height="300"/>
-</div>
+</div> -->
+
+![Homepage](/src/assets/imgs/food-selector_main.PNG?raw=true "Pizza Order")
 
 # Individual Meal Order
 
 This was created during my time as a student at Code Chrysalis.
 
 Main technologies that have been used include:
-* Node.js with express server
-* React.js
-* Redux
+
+- Node.js with express server
+- React.js
+- Redux
 
 ## Features
 
-- Authentication
-- Task lists
-- Filtering and sorting
-- Basic frontend access
+- Food builder (currently only pizza)
+- Checkout
+- Validated user input form
+- Order history
+- Authentication (WIP)
 
 ## Installation
 
-Use npm to install all dependencies
+Use yarn to install all dependencies
+
+Visit https://food-order-mvp.web.app/ for a live preview
 
 ### Database Setup
 
-Connect to the database through
+Connections to the database are made in the following files:
 
-```bash
-/Users/path/to/mongodb/bin/mongod.exe --dbpath=path/to/data/mongodb-data
-```
+- axios-orders.js
+- PizzaBuilder.js
 
-Seeding the database with sample data is supposed to done by either running (simple test data without JWT)
-
-```bash
-npm run sSeed
-```
-
-or running (more complex test data with JWT)
-
-```bash
-npm run cSeed
-```
+Replace the URL with a database of your choice
 
 ### Starting the server
 
 Run the following command to connect to the database and run the express server.
 
 ```bash
- npm run dev
+ yarn run dev
 ```
 
 **Please note:** Some scripts defined in package.json require the usage of the npm env-cmd package, which is set up to expect environment variables in the following path:
@@ -56,35 +51,29 @@ Run the following command to connect to the database and run the express server.
  ./config/dev.env
 ```
 
-Currently this includes the following variables:
+This includes the following variables:
 
 - PORT - the port to access the server
-- MONGODB_URL - the URL to your DB
 - JWT_SECRET - the secret used for JWT generation
 
 ## Endpoints
 
-### User Related Endpoints
+### Order Related Endpoints (Firebase)
 
-- GET /users/me
-- POST /users
-- POST /users/login
-- POST /users/logout
-- POST /users/logout-all
-- PATCH /users/me
-- DELETE /users/me
-
-### Task Related Endpoints
-
-- GET /tasks
-- GET /tasks/:id
-- POST /tasks
-- PATCH /tasks/:id
-- DELETE /tasks/:id
+- GET /checkout
+- GET /checkout/contact-data
+- POST (/orders.json, order)
 
 ## Tests
 
 Not yet implemented
+
+## Potential Additional Features
+
+- [ ] adding authentication
+- [ ] adding user settings
+- [ ] adding additional types of food
+- [ ] more realistic builder graphics
 
 ## Contributing
 
