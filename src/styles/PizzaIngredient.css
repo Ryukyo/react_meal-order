@@ -4,20 +4,21 @@
   background: linear-gradient(#f08e4a, #e27b36);
   border-radius: 0 0 30px 30px;
   box-shadow: inset -15px 0 #c15711;
-  margin: 2% auto;
+  margin: 1% auto;
 }
 
 .PizzaSauce {
   height: 6%;
   width: 78%;
-  background: radial-gradient(
+  background-image: url(./../assets/imgs/sauce.png);
+  /* background: radial-gradient(
     circle,
     rgba(195, 34, 34, 1) 57%,
     rgba(253, 51, 45, 1) 100%
-  );
+  ); */
   border-radius: 50% 50% 0 0;
-  box-shadow: inset -15px 0 rgb(195, 34, 34);
-  margin: 2% auto;
+  /* box-shadow: inset -15px 0 rgb(195, 34, 34); */
+  margin: 1% auto;
   position: relative;
 }
 
@@ -85,19 +86,21 @@
 } */
 
 .Meat {
-  width: 50%;
-  height: 5%;
-  background: linear-gradient(#7f3608, #702e05);
+  width: 75%;
+  height: 12%;
+  background-image: url(./../assets/imgs/meat-removebg.png);
+  /* background: linear-gradient(#7f3608, #702e05); */
   margin: 2% auto;
   border-radius: 15px;
 }
 
 .Cheese {
   width: 70%;
-  height: 3%;
+  height: 9%;
   margin: 2% auto;
-  background: linear-gradient(#f4d004, #d6bb22);
-  border-radius: 20px;
+  background-image: url(./../assets/imgs/cheese.png);
+  /* background: linear-gradient(#f4d004, #d6bb22); */
+  border-radius: 5px;
 }
 
 .Olive {
@@ -110,8 +113,9 @@
 }
 
 .Bacon {
-  width: 80%;
-  height: 3%;
-  background: linear-gradient(#bf3813, #c45e38);
+  width: 50%;
+  height: 8.5%;
+  background-image: url(./../assets/imgs/bacon-removebg.png);
+  /* background: linear-gradient(#bf3813, #c45e38); */
   margin: 2% auto;
 }
