@@ -9,25 +9,16 @@ import OrderSummary from "../../components/Pizza/OrderSummary";
 import Spinner from "../../components/Layout/Spinner";
 import errorHandler from "../../utils/errorHandler";
 import axios from "../../axios-orders";
-import * as actionTypes from "../../store/actions";
+import * as pizzaActionTypes from "../../store/actions/index";
 
 class PizzaBuilder extends Component {
   // UI relevant states only
   state = {
     ordering: false,
-    loading: false,
-    error: false,
   };
 
   componentDidMount() {
-    axios
-      .get("https://food-order-mvp.firebaseio.com/ingredients.json")
-      .then((res) => {
-        this.setState({ ingredients: res.data });
-      })
-      .catch((error) => {
-        this.setState({ error: true });
-      });
+    this.props.onInitIngredients();
   }
 
   updatePurchaseState = (ingredients) => {
@@ -65,7 +56,7 @@ class PizzaBuilder extends Component {
     }
 
     let orderSummary = null;
-    let pizza = this.state.error ? (
+    let pizza = this.props.error ? (
       <p>Failed to load ingredients</p>
     ) : (
       <Spinner />
@@ -95,10 +86,6 @@ class PizzaBuilder extends Component {
       );
     }
 
-    if (this.state.loading) {
-      orderSummary = <Spinner />;
-    }
-
     return (
       <Aux>
         <Modal
@@ -116,17 +103,16 @@ const mapStateToProps = (state) => {
   return {
     ings: state.ingredients,
     total: state.total,
+    error: state.error,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     onIngredientAdded: (ingrName) =>
-      dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: ingrName }),
+      dispatch(pizzaActionTypes.addIngredient(ingrName)),
     onIngredientRemoved: (ingrName) =>
-      dispatch({
-        type: actionTypes.REMOVE_INGREDIENT,
-        ingredientName: ingrName,
-      }),
+      dispatch(pizzaActionTypes.removeIngredient(ingrName)),
+    onInitIngredients: () => dispatch(pizzaActionTypes.initIngredients()),
   };
 };
 
